@@ -79,7 +79,7 @@ python3 scripts/validate_skill_package.py
 
 ## Skill 安装
 
-参赛上传包已放在：
+Skill 分发包已放在：
 
 ```text
 skill/sales-champion-assistant/sales-champion-assistant.zip
