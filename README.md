@@ -51,7 +51,8 @@
 │   └── validate_skill_package.py
 └── skill/
     └── sales-champion-assistant/
-        └── SKILL.md
+        ├── SKILL.md
+        └── sales-champion-assistant.zip
 ```
 
 ## 快速检查
@@ -77,6 +78,12 @@ python3 scripts/validate_skill_package.py
 - 资源池样例是否包含政府关系、客户池、资本网络、校友/协会、招聘入口和合规字段。
 
 ## Skill 安装
+
+参赛上传包已放在：
+
+```text
+skill/sales-champion-assistant/sales-champion-assistant.zip
+```
 
 如果你的运行时支持本地 Skill 目录，推荐先生成带引用文件的打包目录：
 
