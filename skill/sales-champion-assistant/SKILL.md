@@ -5,6 +5,8 @@ description: 销冠助手：输入企业名称，整理公开信息，生成企�
 
 # 销冠助手
 
+GitHub: [guiltyluce/sales-champion-assistant](https://github.com/guiltyluce/sales-champion-assistant)
+
 用于把一个企业名称整理成可执行的客户调研与建联策略。报告需要覆盖企业信息星标评级、招聘薪资观察、企业基本信息、权力地图、资本与政府关系、产业链、战略焦虑、资源匹配路径和高管沟通建议。
 
 曾用技能名：`company-intel-report`。新仓库和新 Skill 使用 `sales-champion-assistant`。
