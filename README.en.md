@@ -10,7 +10,7 @@ This repository provides:
 
 - A Codex/OpenClaw-style Skill.
 - A two-stage Chinese prompt workflow: Researcher creates structured intelligence, Writer turns it into a report.
-- A JSON Schema for validating structured intelligence.
+- A lightweight JSON Schema for development-time structure reference.
 - A sample resource catalog that maps company leads to actionable outreach paths.
 - A lightweight validation script for checking the Skill package structure.
 

@@ -46,7 +46,7 @@ GitHub: [guiltyluce/sales-champion-assistant](https://github.com/guiltyluce/sale
    - 行业媒体采访与活动发言。
 2. 抽取结构化情报：
    - 使用 `references/prompts/company_intel_prompts_zh.md` 的 Researcher 阶段提示词。
-   - 输出 JSON 必须符合 `references/schema/company_intel_report.schema.json`。
+   - 输出 JSON 必须遵循提示词中的字段要求，字段缺失时写明信息缺口。
    - `enterprise_info` 必须包含综合评级、GTM 客群 Fact Check、敏感性扫描、严重性检查、五维星级评估、招聘薪资分析。
 3. 做质量检查：
    - 缺失信息写“未公开”。

@@ -10,7 +10,7 @@
 
 - 一份 Codex/OpenClaw 风格的 Skill。
 - 两阶段中文提示词：Researcher 先产出结构化情报，Writer 再生成报告。
-- 一份 JSON Schema，用来约束结构化情报字段。
+- 一份轻量 JSON Schema，用作开发期结构参考。
 - 一份资源池样例，用于把企业线索转成可执行的建联路径。
 - 一个轻量校验脚本，用来检查 Skill 打包结构。
 
@@ -74,8 +74,7 @@ python3 scripts/validate_skill_package.py
 这个校验会检查：
 
 - `SKILL.md` 的 frontmatter 名称。
-- Skill 中引用的 prompt、schema 和配置文件是否能被打包。
-- JSON Schema 是否要求 `enterprise_info`。
+- Skill 中引用的 prompt 和配置文件是否能被打包。
 - Prompt 是否保留关键流程标记。
 - 资源池样例是否包含政府关系、客户池、资本网络、校友/协会、招聘入口和合规字段。
 
@@ -100,7 +99,7 @@ mkdir -p ~/.codex/skills
 cp -R .skill-package-staging/sales-champion-assistant ~/.codex/skills/
 ```
 
-安装后，智能体在遇到“查一下这家公司”“做一份客户建联报告”“给我一个 BD 拜访策略”“整理某公司的客户画像”等需求时，可以按 `SKILL.md` 调用这套流程。校验脚本会把 `prompts/`、`schema/` 和 `config/` 放入 Skill 包的 `references/` 目录，便于运行时读取。
+安装后，智能体在遇到“查一下这家公司”“做一份客户建联报告”“给我一个 BD 拜访策略”“整理某公司的客户画像”等需求时，可以按 `SKILL.md` 调用这套流程。校验脚本会把 `prompts/` 和 `config/` 放入 Skill 包的 `references/` 目录，便于运行时读取。
 
 ## 资源池配置
 

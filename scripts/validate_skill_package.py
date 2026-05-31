@@ -51,9 +51,6 @@ def copy_package(source_root: Path, staging_root: Path) -> Path:
         "references/prompts/company_intel_prompts_zh.md": source_root
         / "prompts"
         / "company_intel_prompts_zh.md",
-        "references/schema/company_intel_report.schema.json": source_root
-        / "schema"
-        / "company_intel_report.schema.json",
         "references/config/resource_catalog.example.json": source_root
         / "config"
         / "resource_catalog.example.json",
@@ -137,37 +134,6 @@ def load_json(path: Path) -> dict:
     return value
 
 
-def validate_schema(package_dir: Path) -> None:
-    schema = load_json(
-        package_dir / "references/schema/company_intel_report.schema.json"
-    )
-    required = schema.get("required")
-    if not isinstance(required, list) or not required:
-        raise ValidationError("JSON schema must define non-empty required fields.")
-    if "enterprise_info" not in required:
-        raise ValidationError("JSON schema must require enterprise_info.")
-    if schema.get("type") != "object":
-        raise ValidationError("JSON schema top-level type must be object.")
-    if schema.get("additionalProperties") is not False:
-        raise ValidationError("JSON schema should set additionalProperties to false.")
-
-    enterprise_info = schema.get("properties", {}).get("enterprise_info", {})
-    enterprise_required = set(enterprise_info.get("required", []))
-    expected = {
-        "overall_rating",
-        "gtm_fact_check",
-        "sensitivity_check",
-        "veto_check",
-        "star_rating",
-        "recruiting_salary_analysis",
-    }
-    missing = sorted(expected - enterprise_required)
-    if missing:
-        raise ValidationError(
-            "enterprise_info missing required fields: " + ", ".join(missing)
-        )
-
-
 def validate_prompt(package_dir: Path) -> None:
     prompt_path = package_dir / "references/prompts/company_intel_prompts_zh.md"
     text = prompt_path.read_text(encoding="utf-8")
@@ -216,7 +182,6 @@ def main() -> int:
             package_dir = copy_package(source_root, Path(tmp))
             validate_frontmatter(package_dir)
             validate_references(package_dir)
-            validate_schema(package_dir)
             validate_prompt(package_dir)
             validate_resource_catalog(package_dir)
 
