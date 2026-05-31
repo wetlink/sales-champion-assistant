@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/sales-champion-assistant/company-intel-report.schema.json",
+  "title": "SalesChampionAssistantReport",
+  "type": "object",
+  "required": [
+    "company_name",
+    "benchmark_date",
+    "company_type",
+    "strategic_keywords",
+    "enterprise_info",
+    "power_map",
+    "capital_gr",
+    "supply_chain",
+    "social_footprint",
+    "resource_matching",
+    "communication_guides",
+    "unknowns",
+    "evidence"
+  ],
+  "properties": {
+    "company_name": { "type": "string" },
+    "benchmark_date": { "type": "string" },
+    "company_type": { "type": "string" },
+    "strategic_keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "enterprise_info": {
+      "type": "object",
+      "required": [
+        "overall_rating",
+        "gtm_fact_check",
+        "sensitivity_check",
+        "veto_check",
+        "star_rating",
+        "recruiting_salary_analysis"
+      ],
+      "properties": {
+        "overall_rating": {
+          "type": "object",
+          "required": ["stars", "label", "rationale"],
+          "properties": {
+            "stars": { "type": "string", "enum": ["★★★", "★★☆", "★☆☆"] },
+            "label": { "type": "string" },
+            "rationale": { "type": "string" }
+          }
+        },
+        "gtm_fact_check": {
+          "type": "object",
+          "required": [
+            "employee_count",
+            "employee_segment",
+            "source_title",
+            "source_url",
+            "source_note",
+            "confidence"
+          ],
+          "properties": {
+            "employee_count": { "type": ["integer", "null"], "minimum": 0 },
+            "employee_segment": {
+              "type": "string",
+              "enum": ["中小", "腰部", "大型", "超大型", "未公开"]
+            },
+            "source_title": { "type": "string" },
+            "source_url": { "type": "string" },
+            "source_note": { "type": "string" },
+            "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+          }
+        },
+        "sensitivity_check": {
+          "type": "object",
+          "required": ["status", "matched_keywords", "analysis"],
+          "properties": {
+            "status": { "type": "string", "enum": ["clear", "warning", "unknown"] },
+            "matched_keywords": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "analysis": { "type": "string" }
+          }
+        },
+        "veto_check": {
+          "type": "object",
+          "required": ["result", "triggers", "analysis"],
+          "properties": {
+            "result": {
+              "type": "string",
+              "enum": ["pass", "warning", "severe", "unknown"]
+            },
+            "triggers": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "analysis": { "type": "string" }
+          }
+        },
+        "star_rating": {
+          "type": "object",
+          "required": [
+            "industry_growth",
+            "industry_position",
+            "regional_position",
+            "financial_capital",
+            "management_profile"
+          ],
+          "properties": {
+            "industry_growth": { "$ref": "#/$defs/starDimension" },
+            "industry_position": { "$ref": "#/$defs/starDimension" },
+            "regional_position": { "$ref": "#/$defs/starDimension" },
+            "financial_capital": { "$ref": "#/$defs/starDimension" },
+            "management_profile": { "$ref": "#/$defs/starDimension" }
+          }
+        },
+        "recruiting_salary_analysis": {
+          "type": "object",
+          "required": [
+            "snapshot_date",
+            "hiring_status",
+            "platforms_checked",
+            "open_roles",
+            "salary_insights",
+            "growth_signal",
+            "industry_position_signal",
+            "analysis"
+          ],
+          "properties": {
+            "snapshot_date": { "type": "string" },
+            "hiring_status": {
+              "type": "string",
+              "enum": ["active", "limited", "none_found", "unknown"]
+            },
+            "platforms_checked": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "open_roles": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "role_title",
+                  "function",
+                  "location",
+                  "salary_range",
+                  "source_title",
+                  "source_url",
+                  "confidence"
+                ],
+                "properties": {
+                  "role_title": { "type": "string" },
+                  "function": { "type": "string" },
+                  "location": { "type": "string" },
+                  "salary_range": { "type": "string" },
+                  "experience": { "type": "string" },
+                  "education": { "type": "string" },
+                  "posted_at": { "type": "string" },
+                  "source_title": { "type": "string" },
+                  "source_url": { "type": "string" },
+                  "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+                }
+              }
+            },
+            "salary_insights": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "growth_signal": { "type": "string" },
+            "industry_position_signal": { "type": "string" },
+            "analysis": { "type": "string" }
+          }
+        }
+      }
+    },
+    "power_map": {
+      "type": "object",
+      "required": ["family", "executives", "former_executives", "vacancies"],
+      "properties": {
+        "family": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "title", "tags", "succession_status", "profile", "status"],
+            "properties": {
+              "name": { "type": "string" },
+              "title": { "type": "string" },
+              "tags": { "type": "array", "items": { "type": "string" } },
+              "succession_status": { "type": "string" },
+              "profile": { "type": "string" },
+              "status": { "type": "string", "enum": ["active", "left", "unknown"] }
+            }
+          }
+        },
+        "executives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "title", "tags", "profile", "responsibilities", "status"],
+            "properties": {
+              "name": { "type": "string" },
+              "title": { "type": "string" },
+              "tags": { "type": "array", "items": { "type": "string" } },
+              "profile": { "type": "string" },
+              "responsibilities": { "type": "string" },
+              "status": { "type": "string", "enum": ["active", "left", "unknown"] }
+            }
+          }
+        },
+        "former_executives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "former_title", "leave_note", "impact"],
+            "properties": {
+              "name": { "type": "string" },
+              "former_title": { "type": "string" },
+              "leave_note": { "type": "string" },
+              "impact": { "type": "string" }
+            }
+          }
+        },
+        "vacancies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["role", "status", "signal", "impact"],
+            "properties": {
+              "role": { "type": "string" },
+              "status": { "type": "string", "enum": ["open"] },
+              "signal": { "type": "string" },
+              "impact": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "capital_gr": {
+      "type": "object",
+      "required": ["financing", "shareholders", "government_relations", "subsidies", "regulators"],
+      "properties": {
+        "financing": { "type": "array", "items": { "type": "string" } },
+        "shareholders": { "type": "array", "items": { "type": "string" } },
+        "government_relations": { "type": "array", "items": { "type": "string" } },
+        "subsidies": { "type": "array", "items": { "type": "string" } },
+        "regulators": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "supply_chain": {
+      "type": "object",
+      "required": ["positioning", "upstream", "downstream", "key_targets"],
+      "properties": {
+        "positioning": { "type": "string" },
+        "upstream": { "type": "array", "items": { "type": "string" } },
+        "downstream": { "type": "array", "items": { "type": "string" } },
+        "key_targets": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "social_footprint": {
+      "type": "object",
+      "required": ["public_quotes", "strategic_anxieties", "circles"],
+      "properties": {
+        "public_quotes": { "type": "array", "items": { "type": "string" } },
+        "strategic_anxieties": { "type": "array", "items": { "type": "string" } },
+        "circles": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "resource_matching": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["priority", "lever_type", "matching_logic", "execution_path"],
+        "properties": {
+          "priority": { "type": "integer", "minimum": 1, "maximum": 9 },
+          "lever_type": {
+            "type": "string",
+            "enum": ["government", "lighthouse", "capital", "alumni", "association", "recruiting", "other"]
+          },
+          "matching_logic": { "type": "string" },
+          "execution_path": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "communication_guides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target_name", "style", "recent_anxiety", "talk_more", "talk_less", "dont_talk"],
+        "properties": {
+          "target_name": { "type": "string" },
+          "style": { "type": "string" },
+          "recent_anxiety": { "type": "string" },
+          "talk_more": { "type": "array", "items": { "type": "string" } },
+          "talk_less": { "type": "array", "items": { "type": "string" } },
+          "dont_talk": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "source_title", "source_url", "confidence"],
+        "properties": {
+          "claim": { "type": "string" },
+          "source_title": { "type": "string" },
+          "source_url": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "starDimension": {
+      "type": "object",
+      "required": ["stars", "score", "rationale"],
+      "properties": {
+        "stars": { "type": "string", "enum": ["★★★", "★★☆", "★☆☆"] },
+        "score": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "rationale": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

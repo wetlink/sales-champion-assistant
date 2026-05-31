@@ -1,0 +1,74 @@
+{
+  "version": "2026-03-10",
+  "owner": "your_team_name",
+  "regions": ["全国", "长三角", "珠三角", "成渝"],
+  "government_gr": [
+    {
+      "name": "地方工信系统关系",
+      "coverage": ["市工信局", "区县工信部门", "产业园管委会"],
+      "strength": "medium",
+      "notes": "适合制造业/数字经济企业初次破冰"
+    },
+    {
+      "name": "国资系统关系",
+      "coverage": ["地方国资委", "国资平台公司"],
+      "strength": "high",
+      "notes": "适合国资控股或地方重点企业"
+    }
+  ],
+  "lighthouse_clients": [
+    {
+      "name": "3D打印链主客户池",
+      "industries": ["3D打印设备", "耗材"],
+      "example_accounts": ["客户A", "客户B"],
+      "strength": "medium"
+    },
+    {
+      "name": "消费品供应链客户池",
+      "industries": ["休闲食品", "家居日用品", "电商零售"],
+      "example_accounts": ["客户C", "客户D"],
+      "strength": "high"
+    }
+  ],
+  "capital_network": [
+    {
+      "name": "券商投行网络",
+      "coverage": ["保荐机构", "行业分析师"],
+      "strength": "medium"
+    },
+    {
+      "name": "产业投资网络",
+      "coverage": ["产业资本", "地方基金", "PE/VC"],
+      "strength": "medium"
+    }
+  ],
+  "alumni_association": [
+    {
+      "name": "商学院校友网络",
+      "coverage": ["EMBA", "企业家课程"],
+      "strength": "low"
+    },
+    {
+      "name": "地方商协会",
+      "coverage": ["制造业协会", "数字经济协会", "青年企业家协会"],
+      "strength": "medium"
+    }
+  ],
+  "recruiting_entry": [
+    {
+      "name": "招聘渠道触达",
+      "coverage": ["HR负责人", "业务关键岗位招聘"],
+      "strength": "high",
+      "notes": "适合从岗位痛点切入业务对话"
+    }
+  ],
+  "compliance": {
+    "forbidden_topics": [
+      "非合规利益输送",
+      "未披露内幕信息",
+      "虚假背书"
+    ],
+    "required_disclaimer": "本报告仅基于公开信息与合理推断，不构成投资或法律意见。"
+  }
+}
+
