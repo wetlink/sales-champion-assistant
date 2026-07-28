@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/sales-champion-assistant/report.schema.json",
+  "title": "SalesChampionAssistantReport",
+  "type": "object",
+  "required": [
+    "company_name",
+    "benchmark_date",
+    "strategic_keywords",
+    "enterprise_info",
+    "resource_matching",
+    "communication_guides",
+    "unknowns",
+    "evidence"
+  ],
+  "properties": {
+    "company_name": { "type": "string" },
+    "benchmark_date": { "type": "string" },
+    "strategic_keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "enterprise_info": {
+      "type": "object",
+      "required": [
+        "overall_rating",
+        "gtm_fact_check",
+        "sensitivity_check",
+        "veto_check",
+        "star_rating",
+        "background_check",
+        "recruiting_salary_analysis"
+      ],
+      "properties": {
+        "overall_rating": {
+          "type": "object",
+          "required": ["stars", "label", "rating_logic"],
+          "properties": {
+            "stars": {
+              "type": "string",
+              "enum": ["★★★", "★★☆", "★☆☆"]
+            },
+            "label": {
+              "type": "string",
+              "enum": ["高潜领军者", "中坚力量", "稳健", "高危"]
+            },
+            "rating_logic": { "type": "string" },
+            "rationale": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "gtm_fact_check": {
+          "type": "object",
+          "required": ["employee_segment", "source_platform", "is_third_party_estimate"],
+          "properties": {
+            "employee_count": { "type": ["number", "string"] },
+            "employee_segment": {
+              "type": "string",
+              "enum": ["中小", "腰部", "大型", "超大型", "未公开"]
+            },
+            "source_platform": { "type": "string" },
+            "is_third_party_estimate": { "type": "boolean" },
+            "source_title": { "type": "string" },
+            "source_url": { "type": "string" },
+            "source_note": { "type": "string" },
+            "confidence": {
+              "type": "string",
+              "enum": ["high", "medium", "low"]
+            }
+          },
+          "additionalProperties": true
+        },
+        "sensitivity_check": { "$ref": "#/$defs/noteBlock" },
+        "veto_check": { "$ref": "#/$defs/noteBlock" },
+        "star_rating": {
+          "type": "object",
+          "required": [
+            "industry_growth",
+            "industry_position",
+            "regional_position",
+            "financial_capital",
+            "management_profile"
+          ],
+          "properties": {
+            "industry_growth": {
+              "allOf": [{ "$ref": "#/$defs/starDimension" }],
+              "required": ["stars", "policy_anchor", "growth_vs_gdp"],
+              "properties": {
+                "policy_anchor": { "type": "string" },
+                "growth_vs_gdp": { "type": "string" }
+              }
+            },
+            "industry_position": { "$ref": "#/$defs/starDimension" },
+            "regional_position": { "$ref": "#/$defs/starDimension" },
+            "financial_capital": { "$ref": "#/$defs/starDimension" },
+            "management_profile": {
+              "allOf": [{ "$ref": "#/$defs/starDimension" }],
+              "required": ["stars", "advanced_factors"],
+              "properties": {
+                "advanced_factors": {
+                  "type": "object",
+                  "required": ["hit_count", "factors_hit", "management_type"],
+                  "properties": {
+                    "hit_count": { "type": "number" },
+                    "factors_hit": {
+                      "type": "array",
+                      "items": { "$ref": "#/$defs/advancedFactor" }
+                    },
+                    "management_type": {
+                      "type": "string",
+                      "enum": ["传统型", "专家型", "创新型", "资本型"]
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "background_check": {
+          "type": "object",
+          "required": [
+            "business_overview",
+            "history_timeline",
+            "financial_shareholders",
+            "founder_team",
+            "digital_practice",
+            "contradiction_checks"
+          ],
+          "properties": {
+            "business_overview": { "type": "string" },
+            "history_timeline": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "financial_shareholders": {
+              "type": "object",
+              "properties": {
+                "registered_capital": { "type": "string" },
+                "paid_in_capital": { "type": "string" },
+                "funding_rounds": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "rd_expense_ratio": { "type": "string" }
+              },
+              "additionalProperties": true
+            },
+            "founder_team": { "type": "string" },
+            "digital_practice": {
+              "type": "object",
+              "required": ["analysis"],
+              "properties": {
+                "saas_erp_tools": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "digital_honors": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "analysis": { "type": "string" }
+              },
+              "additionalProperties": true
+            },
+            "contradiction_checks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["item_a", "item_b", "hypothesis"],
+                "properties": {
+                  "item_a": { "type": "string" },
+                  "item_b": { "type": "string" },
+                  "hypothesis": { "type": "string" }
+                },
+                "additionalProperties": true
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "recruiting_salary_analysis": { "$ref": "#/$defs/noteBlock" }
+      },
+      "additionalProperties": true
+    },
+    "resource_matching": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/noteBlock" }
+    },
+    "communication_guides": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/noteBlock" }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "source_title", "source_url", "confidence"],
+        "properties": {
+          "claim": { "type": "string" },
+          "source_title": { "type": "string" },
+          "source_url": { "type": "string" },
+          "confidence": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "$defs": {
+    "noteBlock": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "starDimension": {
+      "type": "object",
+      "required": ["stars", "rationale"],
+      "properties": {
+        "stars": {
+          "type": "string",
+          "enum": ["★★★", "★★☆", "★☆☆"]
+        },
+        "score": { "type": "number" },
+        "rationale": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "advancedFactor": {
+      "type": "object",
+      "required": ["id", "name", "evidence"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": ["F1", "F2", "F3", "F4", "F5", "F6", "F7"]
+        },
+        "name": { "type": "string" },
+        "evidence": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
