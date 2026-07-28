@@ -84,8 +84,9 @@ GitHub: [guiltyluce/sales-champion-assistant](https://github.com/guiltyluce/sale
 
 # 交付方式
 
-- 默认：本地落盘 Markdown 报告 + 结构化 JSON（如 `output/reports/{company_name}-{YYYYMMDD}.md/.json`），聊天入口先给摘要。
-- 可选（环境具备时）：若运行环境有飞书文档/多维表格等在线文档写入能力（例如 lark-doc、lark-base 类技能或同等工具），可将完整报告写入在线文档，并把综合评级、星级、建联抓手等结构化字段沉淀到多维表格客户库，便于团队复用。环境不具备该能力时静默跳过，不视为失败。
+- **飞书智能体环境（默认出云文档）**：当运行环境具备飞书文档写入能力（如 feishu-doc、lark-doc 类技能或同等工具）时，完整报告**默认生成飞书云文档版本**，并把文档链接连同聊天摘要一起回复——聊天摘要不能替代云文档，除非用户明确说明不需要文档。文档标题用报告标题；可选将综合评级、星级、建联抓手等结构化字段沉淀到多维表格客户库，便于团队复用。
+- 本地 CLI 环境：本地落盘 Markdown 报告 + 结构化 JSON（如 `output/reports/{company_name}-{YYYYMMDD}.md/.json`），聊天入口先给摘要。
+- 环境不具备飞书写入能力时静默跳过云文档交付，不视为失败。
 
 # 注意事项
 
