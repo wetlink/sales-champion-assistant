@@ -5,7 +5,7 @@ description: 销冠助手：输入企业名称，整理公开信息，生成企�
 
 # 销冠助手
 
-GitHub: [guiltyluce/sales-champion-assistant](https://github.com/guiltyluce/sales-champion-assistant)
+GitHub: [guiltyluce/sales-champion-assistant](https://github.com/wetlink/sales-champion-assistant)
 
 用于把一个企业名称整理成可执行的客户调研与建联策略。报告覆盖：综合评级（行业双维主导判定表）、GTM 客群 Fact Check、五维星级评估、深度背景调查（含数字化实践与矛盾核查）、招聘薪资观察、权力地图、资本与政府关系、产业链、战略焦虑、资源匹配路径和高管沟通建议。
 
